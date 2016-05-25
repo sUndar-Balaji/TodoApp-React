@@ -19,6 +19,10 @@ class todoStore {
             case "updateTodos": this.todos.push (action.todo);
                                 emitter.emit("change");
                                 break;
+                                
+            case "deleteTodo": this.todos.splice (action.id, 1);
+                                emitter.emit("change");
+                                break;
         
         }
     

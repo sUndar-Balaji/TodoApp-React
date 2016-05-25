@@ -73,7 +73,7 @@ class TodoSection extends React.Component {
         return ( 
         
                 <section>
-                    {this.state.todos}
+                    {this.state.todos.join("-")}
                     <NewTodos update = { this.updateTodoList }/>
                     <TodoLists todos = { this.state.todos }/>
                     <Link to="/users" activeStyle={{ color: 'red' }}>User</Link>
@@ -103,9 +103,9 @@ class NewTodos extends React.Component {
     render () {
     
         return (
-            <div>
+            <div style= { { padding: '10px' } }>
                 <input type="text" id="newTodo"/>
-                <input type="button" onClick={ this.addNewTodo }/>
+                <input type="button" onClick={ this.addNewTodo } value="Add"/>
             </div>
         );
     
@@ -128,7 +128,7 @@ class TodoLists extends React.Component {
         return ( 
         
                 <ul>
-                    { this.props.todos.map (( v, i ) => <Todo todo={v} key={i}/>) }
+                    { this.props.todos.map (( v, i ) => <Todo todo={v} id={i} key={i}/>) }
                 </ul>
         );
     
@@ -143,12 +143,18 @@ class Todo extends React.Component {
         super();
         
     }
+    
+    deleteTodo = () => {
+    
+        Actions.deleteTodo (this.props.id);
+    
+    }
 
     render () {
     
         return ( 
         
-                <li>{ this.props.todo }</li>
+                <li>{ this.props.todo } <a href="#" onClick={ this.deleteTodo }>X</a></li>
         );
     
     }

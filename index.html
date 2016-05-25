@@ -1,7 +1,36 @@
 
 <html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <style>
+            nav {
+                margin-top: 10px;
+            }
+            nav>a {
+                padding: 10px;
+            }            
+            nav>a.active, nav>a:hover {
+                text-decoration: none;
+            }
+            nav>a:hover {
+                color: blue;
+            }
+            .content {
+                padding: 10px;
+            }
+            .content [type=button] {
+                margin-left: 10px;
+            }
+            .content ul {
+                padding: 10px;
+            }
+            .content ul>li {
+                list-style: none;
+            }
+        </style>
+    </head>
     <body>
     <div id="comps"></div>
-    <script src="/dist/bundle.js" defer></script>
+    <script src="/dist/bundle.js" async></script>
     </body>
 </html>
