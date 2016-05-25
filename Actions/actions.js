@@ -2,6 +2,8 @@ import { Dispatcher } from 'flux';
 
 var dispatcherActions = new Dispatcher();
 
-export function updateTodos (todo) {
+dispatcherActions.updateTodos = function (todo) {
     dispatcherActions.dispatch ( { 'action': 'updateTodos', 'todo': todo } );
 }
+
+module.exports = dispatcherActions;

@@ -2,11 +2,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Router, Route, Link, browserHistory, hashHistory, IndexRoute, IndexLink } from 'react-router';
-import TodoStore from './Store/todoStore';
+import todoStores from './Store/todoStore';
 import * as Actions from './Actions/actions';
 import InnerComps from './public/js/innerComps';
 import User from './public/js/user';
 import NewUser from './public/js/newUser';
+
+var TodoStore = todoStores.TodoStore, emitter = todoStores.emitter;
 
 
 class App extends React.Component {
@@ -43,7 +45,7 @@ class TodoSection extends React.Component {
     
         super();
     
-        this.state = { todos: new TodoStore().todos };
+        this.state = { todos: TodoStore.todos };
         
     }
     
@@ -51,6 +53,18 @@ class TodoSection extends React.Component {
     
         this.state.todos.push(newTodo);
         this.setState ( { todos: this.state.todos } );
+    
+    }
+    
+    componentDidMount () {
+    
+        emitter.on ("change", () => {
+        
+            this.state.todos = TodoStore.todos;
+            
+            this.setState ({ todos: this.state.todos });
+        
+        });
     
     }
 
